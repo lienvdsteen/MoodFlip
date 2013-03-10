@@ -19,8 +19,18 @@ class MoodController extends DooController {
 				//first determine the track from current to future mood
 					// if we have to travel trough +2 moods check if enough time, if not, we show a warning that it will probably 
 					// take longer than the selected time
-				//get photos for all the different moods
-				//get music for all the different moods
+				$track = Emotions::determineTrack($currentMood, $futureMood);
+				// get photos for all the different moods
+				// get music for all the different moods
+				if (is_array($track)) {
+					$photos = array();
+					$songs = array();
+					foreach ($track as $emotion) {
+						$photos[$emotion] = ''; //Photo_Manager::
+						$songs[$emotion] = ''. //Music_Manager::
+					}
+				}
+				
 			}
 		}
 
