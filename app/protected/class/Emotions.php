@@ -184,6 +184,32 @@ class Emotions {
 		)
 	);
 
+	private static $_presetEmotions = array(
+		array(
+			'currentMood' => 'sleepy',
+			'futureMood' => 'excited',
+			'timeNeeded' => 35
+		),
+		array(
+			'currentMood' => 'angry',
+			'futureMood' => 'calm',
+			'timeNeeded' => 35
+		),
+		array(
+			'currentMood' => 'tense',
+			'futureMood' => 'sleepy',
+			'timeNeeded' => 35
+		)
+	);
+
+	public static function getPresets() {
+		return self::$_presetEmotions;
+	}
+
+	public static function getRandomPreset() {
+		return array_rand(self::$_presetEmotions);
+	}
+
 	public static function getAllEmotions() {		
 		return self::$_emotionsConfig;
 	}
