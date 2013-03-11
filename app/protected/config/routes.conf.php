@@ -1,6 +1,6 @@
 <?php
  
-$route['*']['/'] = array('MainController', 'index');
+$route['*']['/'] = array('MoodController', 'index');
 $route['*']['/error'] = array('ErrorController', 'index');
 
 
