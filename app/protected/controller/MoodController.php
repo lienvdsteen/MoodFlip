@@ -27,19 +27,21 @@ class MoodController extends DooController {
 					$songs = array();
 					foreach ($track as $emotion) {
 						$photos[$emotion] = ''; //Photo_Manager::
-						$songs[$emotion] = ''. //Music_Manager::
+						$songs[$emotion] = ''; //Music_Manager::
 					}
 				}
-				
 			}
 		}
 
+		$defaultEmotions = Emotions::getRandomPreset();
+		var_dump($defaultEmotions);
 		$emotions = Emotions::getAllEmotions();
 		ksort($emotions);
 		$times = array('5', '10', '15', '20', '25', '30', '35', '40', '45', '50' ,'55', '60');
 		$this->render('index', array(
 			'emotions' => $emotions,
 			'times' => $times,
+			'defaultEmotions' => $defaultEmotions
 		));
 	}
 
