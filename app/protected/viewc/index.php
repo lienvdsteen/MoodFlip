@@ -42,22 +42,23 @@
           color:black;
         }
       </style>
-
+<?php echo $data['defaultEmotions']['currentMood']; ?>
       <div class="hero-unit">
         <h1>Mood<span>Flip</span></h1>
         <p>
+          
 			<form method="post" action="mood">
 				<?php if( is_array($data['emotions']) ): ?>
 					My current mood is 
 					<select name="currentMood" style="width:120px; margin-left:5px; margin-right:5px;">
 						<?php foreach($data['emotions'] as $k1=>$v1): ?>
-							<option value="<?php echo $k1; ?>"><?php echo $v1['value']; ?></option>
+							<option value="<?php echo $k1; ?>" <?php if( $k1==$data['defaultEmotions']['currentMood'] ): ?>selected="selected"<?php endif; ?>><?php echo $v1['value']; ?></option>
 						<?php endforeach; ?>
 					</select>
 					and I'd like to change it into
 					<select name="futureMood" style="width:120px; margin-left:5px; margin-right:5px;">
 						<?php foreach($data['emotions'] as $k1=>$v1): ?>
-							<option value="<?php echo $k1; ?>"><?php echo $v1['value']; ?></option>
+							<option value="<?php echo $k1; ?>" <?php if( $k1=='excited' ): ?>selected="selected<?php endif; ?>"><?php echo $v1['value']; ?></option>
 						<?php endforeach; ?>
 					</select>
 				<?php endif; ?>

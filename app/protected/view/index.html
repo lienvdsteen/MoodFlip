@@ -42,22 +42,23 @@
           color:black;
         }
       </style>
-
+{{defaultEmotions.currentMood}}
       <div class="hero-unit">
         <h1>Mood<span>Flip</span></h1>
         <p>
+          
 			<form method="post" action="mood">
 				<!-- if {{is_array(emotions)}} -->
 					My current mood is 
 					<select name="currentMood" style="width:120px; margin-left:5px; margin-right:5px;">
 						<!-- loop emotions -->
-							<option value="{{l' k}}">{{l' v.value}}</option>
+							<option value="{{l' k}}" <!-- if {{l' k}}=={{defaultEmotions.currentMood}} -->selected="selected"<!-- endif -->>{{l' v.value}}</option>
 						<!-- endloop -->
 					</select>
 					and I'd like to change it into
 					<select name="futureMood" style="width:120px; margin-left:5px; margin-right:5px;">
 						<!-- loop emotions -->
-							<option value="{{l' k}}">{{l' v.value}}</option>
+							<option value="{{l' k}}" <!-- if {{l' k}}=='excited' -->selected="selected<!-- endif -->">{{l' v.value}}</option>
 						<!-- endloop -->
 					</select>
 				<!-- endif -->
