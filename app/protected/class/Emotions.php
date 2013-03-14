@@ -199,7 +199,22 @@ class Emotions {
 			'currentMood' => 'tense',
 			'futureMood' => 'sleepy',
 			'timeNeeded' => 35
-		)
+		),
+		array(
+			'currentMood' => 'bored',
+			'futureMood' => 'content',
+			'timeNeeded' => 35
+		),
+		array(
+			'currentMood' => 'distressed',
+			'futureMood' => 'happy',
+			'timeNeeded' => 35
+		),
+		array(
+			'currentMood' => 'depressed',
+			'futureMood' => 'happy',
+			'timeNeeded' => 60
+		),
 	);
 
 	public static function getPresets() {
@@ -207,7 +222,8 @@ class Emotions {
 	}
 
 	public static function getRandomPreset() {
-		return array_rand(self::$_presetEmotions);
+		$presets = self::$_presetEmotions;
+		return $presets[array_rand(self::$_presetEmotions)];
 	}
 
 	public static function getAllEmotions() {		
@@ -215,7 +231,7 @@ class Emotions {
 	}
 
 	public static function validEmotion($emotion) {
-		return in_array($emotion, self::$_emotionsConfig);
+		return array_key_exists($emotion, self::$_emotionsConfig);
 	}
 	
 	/**
@@ -225,7 +241,9 @@ class Emotions {
 	 * @return array 	$moods
 	 */	
 	public static function determineTrack($currentMood, $futureMood) {
-		$moods = array();
+		// @todo lien: really determine the track between the currentMood and futureMood
+			// leave out currentMood (because this mood is what the user doesn't need anymore)
+		$moods = array($currentMood, $futureMood);
 		return $moods;
 	}
 }
