@@ -1,39 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>How are ya?</title>
-	<script src="global/js/jquery-1.9.1.js"></script>
-	<script src="global/js/bootstrap.js"></script>
-	<link href="global/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-	<style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-    </style>
-    <link href="global/css/bootstrap-responsive.css" rel="stylesheet" media="screen" />
-</head>
-<body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
-     	<div class="navbar-inner">
-        	<div class="container">
-          		<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            		<span class="icon-bar"></span>
-            		<span class="icon-bar"></span>
-            		<span class="icon-bar"></span>
-          		</button>
-          		<a class="brand" href="mood">MoodFlip</a>
-          		<div class="nav-collapse collapse">
-            		<ul class="nav">
-              			<li class="active"><a href="mood">Home</a></li>
-            			<li><a href="about">About</a></li>
-              			<li><a href="#contact">Contact</a></li>
-          		</div><!--/.nav-collapse -->
-        	</div>
-      	</div>
-    </div>
-    <div class="container">
-      <style>
+<!-- block:contents -->
+    <style>
         .hero-unit {
           color: white;
           background: url(global/img/cover1.png);
@@ -41,8 +7,13 @@
         .hero-unit span {
           color:black;
         }
-      </style>
-{{defaultEmotions.currentMood}}
+   	</style>
+
+    <div class="alert">
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<strong>What I wanted to tell you: </strong>{{message}}
+	</div>
+
       <div class="hero-unit">
         <h1>Mood<span>Flip</span></h1>
         <p>
@@ -58,7 +29,7 @@
 					and I'd like to change it into
 					<select name="futureMood" style="width:120px; margin-left:5px; margin-right:5px;">
 						<!-- loop emotions -->
-							<option value="{{l' k}}" <!-- if {{l' k}}=='excited' -->selected="selected<!-- endif -->">{{l' v.value}}</option>
+							<option value="{{l' k}}" <!-- if {{l' k}}=={{defaultEmotions.futureMood}} -->selected="selected"<!-- endif -->>{{l' v.value}}</option>
 						<!-- endloop -->
 					</select>
 				<!-- endif -->
@@ -66,7 +37,7 @@
 					in
 					<select name="minutes" style="width:50px; margin-left:5px; margin-right:5px;">
 						<!-- loop times -->
-							<option value="{{l' v}}">{{l' v}}</option>
+							<option value="{{l' v}}" <!-- if {{l' v}}=={{defaultEmotions.timeNeeded}} -->selected="selected"<!-- endif -->>{{l' v}}</option>
 						<!-- endloop -->
 					</select>
 					minutes.
@@ -77,29 +48,4 @@
 			</form>
 		</p>
       </div>
-
-      <hr>
-      <footer>
-        <p>&copy; MoodChanger 2013</p>
-      </footer>
-
-    </div> <!-- /container -->
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="global/js/bootstrap-transition.js"></script>
-    <script src="global/js/bootstrap-alert.js"></script>
-    <script src="global/js/bootstrap-modal.js"></script>
-    <script src="global/js/bootstrap-dropdown.js"></script>
-    <script src="global/js/bootstrap-scrollspy.js"></script>
-    <script src="global/js/bootstrap-tab.js"></script>
-    <script src="global/js/bootstrap-tooltip.js"></script>
-    <script src="global/js/bootstrap-popover.js"></script>
-    <script src="global/js/bootstrap-button.js"></script>
-    <script src="global/js/bootstrap-collapse.js"></script>
-    <script src="global/js/bootstrap-carousel.js"></script>
-    <script src="global/js/bootstrap-typeahead.js"></script>
-
-  </body>
-</html>
+<!-- endblock -->
