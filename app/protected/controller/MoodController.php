@@ -2,12 +2,17 @@
 
 class MoodController extends DooController {
 	public function index() {
+		$this->data['action'] = 'index';
 		Doo::loadClass('Emotions');
-
+		Doo::loadClass('Api');
+		Doo::loadClass('Services');
+		Doo::loadClass('Compliments');
+		
 		if ($this->isPost()) {
-			$currentMood = $_POST['currentMood'];
-			$futureMood = $_POST['futureMood'];
-			$time = $_POST['minutes'];
+			$currentMood = $this->escape($_POST['currentMood']);
+			$futureMood = $this->escape($_POST['futureMood']);
+			$time = $this->escape($_POST['minutes']);
+
 			//check valid emotions
 			if (!Emotions::validEmotion($currentMood)) {
 				$currentMood = false;
@@ -25,28 +30,41 @@ class MoodController extends DooController {
 				if (is_array($track)) {
 					$photos = array();
 					$songs = array();
+					Doo::loadClass('Music/Manager');
+					$music = new Music_Manager();
 					foreach ($track as $emotion) {
-						$photos[$emotion] = ''; //Photo_Manager::
-						$songs[$emotion] = ''; //Music_Manager::
+						$songs[$emotion] = $music->getSongsByTag($emotion);
 					}
 				}
 			}
 		}
 
+		$compliment = Compliments::giveCompliment();
 		$defaultEmotions = Emotions::getRandomPreset();
-		var_dump($defaultEmotions);
 		$emotions = Emotions::getAllEmotions();
 		ksort($emotions);
 		$times = array('5', '10', '15', '20', '25', '30', '35', '40', '45', '50' ,'55', '60');
-		$this->render('index', array(
+		$this->view()->renderLayout('mood', 'index', array(
 			'emotions' => $emotions,
 			'times' => $times,
-			'defaultEmotions' => $defaultEmotions
+			'defaultEmotions' => $defaultEmotions,
+			'action' => 'index',
+			'songs' => isset($songs) ? $songs : false,
+			'currentMood' => isset($currentMood) ? $currentMood : false,
+			'futureMood' => isset($futureMood) ? $futureMood : false,
+			'message' => $compliment
 		));
 	}
 
 	public function about() {
-		$this->render('about');
+		$this->view()->renderLayout('mood', 'about', array(
+			'action' => 'about'
+		));
 	}
 
+	public function contact() {
+		$this->view()->renderLayout('mood', 'contact', array(
+			'action' => 'contact'
+		));
+	}
 }
