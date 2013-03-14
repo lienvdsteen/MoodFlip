@@ -636,4 +636,13 @@ class DooController {
         if ($_SERVER['REQUEST_METHOD'] == "POST") return true;
         else return false;
     }
+
+    public function escape($str, $ellipsLen = null, $ellipsDots = true) {
+        if ($ellipsLen) {
+            $str = self::ellipse($str, $ellipsLen, $ellipsDots);
+        }
+        $str = htmlentities($str, ENT_COMPAT, 'UTF-8');
+        $str = str_replace('&amp;', '&', $str);
+        return $str;
+    }
 }
