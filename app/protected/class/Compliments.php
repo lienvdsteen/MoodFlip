@@ -40,6 +40,7 @@ class Compliments {
 	} 
 
 	public static function giveCompliment() {
-		return array_rand(self::$_compliments);
+		
+		return self::$_compliments[array_rand(self::$_compliments)];
 	}
 }
