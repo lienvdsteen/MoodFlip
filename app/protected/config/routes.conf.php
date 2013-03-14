@@ -27,4 +27,5 @@ $route['*']['/gen_model'] = array('MainController', 'gen_model', 'authName'=>'Do
 
 $route['*']['/mood'] = array('MoodController', 'index');
 $route['*']['/about'] = array('MoodController', 'about');
+$route['*']['/contact'] = array('MoodController', 'contact');
 ?>
